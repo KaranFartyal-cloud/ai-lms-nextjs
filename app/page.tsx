@@ -3,7 +3,7 @@ import CompanionList from "@/components/CompanionList";
 import CTA from "@/components/CTA";
 import { recentSessions } from "@/constants";
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <div className="mt-7">

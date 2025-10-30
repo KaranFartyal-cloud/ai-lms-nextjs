@@ -6,7 +6,7 @@ import React from "react";
 
 const items = [
   { label: "Home", href: "/" },
-  { label: "Companions", href: "/companions" },
+  { label: "Companions", href: "/companion" },
   { label: "My Journey", href: "/my-journey" },
 ];
 
