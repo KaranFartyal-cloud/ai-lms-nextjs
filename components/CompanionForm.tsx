@@ -195,6 +195,7 @@ function ProfileForm() {
                   type="number"
                   placeholder="Enter the expected duration"
                   {...field}
+                  onChange={(e) => field.onChange(e.target.valueAsNumber)}
                 />
               </FormControl>
               <FormMessage />

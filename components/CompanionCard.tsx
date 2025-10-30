@@ -31,7 +31,10 @@ const CompanionCard: React.FC<Props> = ({
   color,
 }) => {
   return (
-    <Card className={`w-full max-w-md `} style={{ backgroundColor: color }}>
+    <Card
+      className={`w-full max-w-md border-1 border-black`}
+      style={{ backgroundColor: color }}
+    >
       <CardHeader>
         <div className="flex justify-between items-center w-full">
           <Badge>{subject}</Badge>
