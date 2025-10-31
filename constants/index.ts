@@ -18,7 +18,7 @@ export const subjectsColors = {
 
 export const voices = {
   male: { casual: "2BJW5coyhAzSr8STdHbE", formal: "c6SfcYrb2t09NHXiT80T" },
-  female: { casual: "ZIlrSGI4jZqobxRKprJz", formal: "sarah" },
+  female: { casual: "ZIlrSGI4jZqobxRKprJz", formal: "TipzjGGBn9UtTQtUAZQV" },
 };
 
 export const recentSessions = [
@@ -37,7 +37,6 @@ export const recentSessions = [
     topic: "Derivatives & Integrals",
     duration: 30,
     color: "#FFDA6E",
-    
   },
   {
     id: "3",
@@ -46,7 +45,6 @@ export const recentSessions = [
     topic: "English Literature",
     duration: 30,
     color: "#BDE7FF",
-    
   },
   {
     id: "4",
@@ -55,7 +53,6 @@ export const recentSessions = [
     topic: "Intro to If-Else Statements",
     duration: 45,
     color: "#FFC8E4",
-    
   },
   {
     id: "5",
@@ -64,7 +61,6 @@ export const recentSessions = [
     topic: "World Wars: Causes & Consequences",
     duration: 15,
     color: "#FFECC8",
-    
   },
   {
     id: "6",
@@ -73,6 +69,5 @@ export const recentSessions = [
     topic: "The Basics of Supply & Demand",
     duration: 10,
     color: "#C8FFDF",
-    
   },
 ];

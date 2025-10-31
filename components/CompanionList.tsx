@@ -13,7 +13,6 @@ import { Badge } from "./ui/badge";
 import Image from "next/image";
 import { getImage } from "@/lib/utils";
 import { subjectsColors } from "@/constants";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 type Props = {
