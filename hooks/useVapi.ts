@@ -12,6 +12,7 @@ import { vapi } from "@/lib/vapi.sdk";
 // import { assistant } from "@/assistant/assistant";
 import { Companion } from "@/app/companion/[id]/page";
 import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
+import { voices } from "@/constants";
 
 export enum CALL_STATUS {
   INACTIVE = "inactive",
@@ -47,6 +48,7 @@ export function useVapi(companion: Companion) {
     const onCallEnd = () => {
       console.log("Call has stopped");
       setCallStatus(CALL_STATUS.INACTIVE);
+      setMessages([]);
     };
 
     const onVolumeLevel = (volume: number) => {
@@ -61,7 +63,7 @@ export function useVapi(companion: Companion) {
       ) {
         setActiveTranscript(message);
       } else {
-        setMessages((prev) => [...prev, message]);
+        setMessages((prev) => [message, ...prev]);
         setActiveTranscript(null);
       }
     };
@@ -93,24 +95,53 @@ export function useVapi(companion: Companion) {
 
   const start = async () => {
     setCallStatus(CALL_STATUS.LOADING);
-
+    let voiceId;
+    if (companion.voice === "male" && companion.style === "formal") {
+      voiceId = voices.male.formal;
+    } else if (companion.voice === "male" && companion.style === "casual") {
+      voiceId = voices.male.casual;
+    } else if (companion.voice === "female" && companion.style === "formal") {
+      voiceId = voices.female.formal;
+    } else {
+      voiceId = voices.female.casual;
+    }
     const assistant: CreateAssistantDTO | any = {
-      name: "Paula-broadway",
-      model: {
-        provider: "openai",
-        model: "gpt-3.5-turbo",
-        temperature: 0.7,
-        systemPrompt: `You are an ai assistant who teaches things. `,
-        // Upcoming Shows are ${JSON.stringify(
-        //   shows
-        // )}
-        // `,
+      name: "Companion",
+      firstMessage: `Hello, let's start the session. Today we'll be talking about ${companion.topic}.`,
+      transcriber: {
+        provider: "deepgram",
+        model: "nova-3",
+        language: "en",
       },
       voice: {
         provider: "11labs",
-        voiceId: "paula",
+        voiceId: voiceId,
+        stability: 0.4,
+        similarityBoost: 0.8,
+        speed: 1,
+        style: 0.5,
+        useSpeakerBoost: true,
       },
-      firstMessage: `Hi. I'm Paula, Welcome to this teaching app! Today we are gonna learn about ${companion.topic}. shall we get started ?`,
+      model: {
+        provider: "openai",
+        model: "gpt-4",
+        messages: [
+          {
+            role: "system",
+            content: `You are a highly knowledgeable tutor teaching a real-time voice session with a student. Your goal is to teach the student about the topic and subject.
+
+                    Tutor Guidelines:
+                    Stick to the given topic - ${companion.topic} and subject - {${companion.subject}} }and teach the student about it.
+                    Keep the conversation flowing smoothly while maintaining control.
+                    From time to time make sure that the student is following you and understands you.
+                    Break down the topic into smaller parts and teach the student one part at a time.
+                    Keep your style of conversation ${companion.style}.
+                    Keep your responses short, like in a real voice conversation.
+                    Do not include any special characters in your responses - this is a voice conversation.
+              `,
+          },
+        ],
+      },
     };
 
     const response = vapi.start(assistant);

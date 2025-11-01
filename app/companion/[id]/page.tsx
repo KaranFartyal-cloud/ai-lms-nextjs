@@ -1,9 +1,11 @@
 "use server";
 
 import CompanionComponent from "@/components/CompanionComponent";
+import MessageComponent from "@/components/MessageComponent";
+import UserComponent from "@/components/UserComponent";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { subjectsColors } from "@/constants";
+import { useVapi } from "@/hooks/useVapi";
 import { getCompanion } from "@/lib/actions/companion.action";
 import { getImage } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs/server";
@@ -62,7 +64,16 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
         <h1 className="text-2xl text-gray-700">{duration} mins</h1>
       </div>
-      <CompanionComponent companion={data} />
+      <div className="flex gap-4">
+        <CompanionComponent companion={data} />
+        <UserComponent
+          companion={data}
+          userImg={user.imageUrl}
+          userName={user?.firstName}
+        />
+      </div>
+
+      <MessageComponent companion={data}/>
     </div>
   );
 };

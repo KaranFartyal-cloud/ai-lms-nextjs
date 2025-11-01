@@ -37,7 +37,7 @@ const CompanionCard: React.FC<Props> = ({
     >
       <CardHeader>
         <div className="flex justify-between items-center w-full">
-          <Badge>{subject}</Badge>
+          <Badge className="capitalize">{subject}</Badge>
           <Image
             src={"/save-instagram.png"}
             height={20}
@@ -45,10 +45,12 @@ const CompanionCard: React.FC<Props> = ({
             alt="save-icon"
           />
         </div>
-        <CardTitle className="text-2xl font-bold">{topic}</CardTitle>
-        <p className="text-gray-700">{name}</p>
+        <CardTitle className="text-2xl font-bold capitalize">{topic}</CardTitle>
+        <p className="text-gray-700 capitalize">{name}</p>
         <CardDescription className="flex items-center">
-          <Clock height={17} /> &nbsp;&nbsp;{duration} minutes
+          <Clock height={17} /> &nbsp;&nbsp;
+          {duration}
+          <span className="capitalize">&nbsp;minutes</span>
         </CardDescription>
       </CardHeader>
       <CardContent>

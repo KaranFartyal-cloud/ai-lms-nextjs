@@ -2,7 +2,6 @@ import { CALL_STATUS, useVapi } from "@/hooks/useVapi";
 import { Loader2, Mic, Square } from "lucide-react";
 import { Button } from "./ui/button";
 
-
 const AssistantButton = ({
   toggleCall,
   callStatus,
@@ -35,13 +34,13 @@ const AssistantButton = ({
   return (
     <Button
       style={buttonStyle}
-      className={`transition ease-in-out ${
+      className={` transition ease-in-out ${
         callStatus === CALL_STATUS.ACTIVE
           ? "bg-red-500 hover:bg-red-700"
           : callStatus === CALL_STATUS.LOADING
           ? "bg-orange-500 hover:bg-orange-700"
           : "bg-green-500 hover:bg-green-700"
-      } flex items-center justify-center`}
+      } flex items-center justify-center `}
       onClick={toggleCall}
     >
       {callStatus === CALL_STATUS.ACTIVE ? (
