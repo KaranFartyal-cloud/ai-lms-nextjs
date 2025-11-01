@@ -79,3 +79,53 @@ export const getCompanion = async (id: string) => {
 
   return data[0];
 };
+
+export const addToSessionHistory = async (companionId: string) => {
+  const supabase = createSupabaseClient();
+  const { userId } = await auth();
+
+  const res = await supabase.from("session_history").insert({
+    companion_id: companionId,
+    user_id: userId,
+  });
+
+  if (res.error) throw new Error(res.error.message);
+
+  // console.log("this is response sent by supabase", res);
+
+  return res.data;
+};
+
+export const getRecentSessions = async () => {
+  const supabase = createSupabaseClient();
+  const { userId } = await auth();
+
+  const { data, error } = await supabase
+    .from("session_history")
+    .select(`companions : companion_id (*)`)
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false })
+    .limit(10);
+
+  // console.log(data);
+
+  if (error) throw new Error(error.message);
+
+  return data;
+};
+
+export const getCompanions = async (limit = 3) => {
+  const supabase = createSupabaseClient();
+  const { userId } = await auth();
+
+  const { data, error } = await supabase
+    .from("companions")
+    .select()
+    .eq("author", userId)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) throw new Error(error.message);
+
+  return data;
+};

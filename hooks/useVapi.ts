@@ -13,6 +13,7 @@ import { vapi } from "@/lib/vapi.sdk";
 import { Companion } from "@/app/companion/[id]/page";
 import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
 import { voices } from "@/constants";
+import { addToSessionHistory } from "@/lib/actions/companion.action";
 
 export enum CALL_STATUS {
   INACTIVE = "inactive",
@@ -154,6 +155,7 @@ export function useVapi(companion: Companion) {
   const stop = () => {
     setCallStatus(CALL_STATUS.LOADING);
     vapi.stop();
+    addToSessionHistory(companion.id);
   };
 
   const toggleCall = () => {
@@ -175,3 +177,4 @@ export function useVapi(companion: Companion) {
     toggleCall,
   };
 }
+

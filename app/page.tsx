@@ -1,42 +1,42 @@
 import CompanionCard from "@/components/CompanionCard";
 import CompanionList from "@/components/CompanionList";
 import CTA from "@/components/CTA";
-import { recentSessions } from "@/constants";
+import { subjectsColors } from "@/constants";
+import {
+  getCompanions,
+  getRecentSessions,
+} from "@/lib/actions/companion.action";
 
 export default async function Home() {
+  const data = await getRecentSessions();
+  const companionsArray = data?.map((item) => item.companions);
+
+  const myCompanions = await getCompanions();
+
+  console.log("in clinet components= ", myCompanions);
+
   return (
     <>
       <div className="mt-7">
         <section className="flex justify-between">
-          <CompanionCard
-            id="1"
-            subject="science"
-            name="Neura the brainy Explorer"
-            topic="Neural Network of the brain"
-            duration={45}
-            color="#E5D0FF"
-          />
-          <CompanionCard
-            id="2"
-            subject="maths"
-            name="Countsy the Number wizard"
-            topic="Derivatives and angles"
-            duration={30}
-            color="#FFDA6E"
-          />
-          <CompanionCard
-            id="3"
-            subject="language"
-            name="Verba the vocabulary builder"
-            topic="English literature"
-            duration={30}
-            color="#BDE7FF"
-          />
+          {myCompanions.map((item) => (
+            <CompanionCard
+              key={item.id}
+              id={item.id}
+              subject={item.subject}
+              name={item.name}
+              topic={item.topic}
+              duration={item.duration}
+              color={
+                subjectsColors[item.subject as keyof typeof subjectsColors]
+              }
+            />
+          ))}
         </section>
         <section className="flex gap-10  justify-between">
           <CompanionList
             title="Recently Completed Lessons"
-            companions={recentSessions}
+            companions={companionsArray}
           />
           <CTA />
         </section>

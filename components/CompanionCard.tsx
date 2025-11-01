@@ -53,7 +53,7 @@ const CompanionCard: React.FC<Props> = ({
           <span className="capitalize">&nbsp;minutes</span>
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent >
         <Link href={`/companion/${id}`}>
           <Button className="w-full hover:bg-[#ec5331] bg-[#FE5933] rounded-lg h-10 text-white">
             Launch Session

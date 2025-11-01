@@ -17,15 +17,7 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   title: string;
-  companions: {
-    id: string;
-    subject: string;
-    name: string;
-    topic: string;
-    duration: number;
-    color: string;
-    bookmarked?: boolean;
-  }[];
+  companions: any;
 };
 
 const CompanionList: React.FC<Props> = ({ title, companions }) => {
@@ -45,7 +37,7 @@ const CompanionList: React.FC<Props> = ({ title, companions }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {companions.map((item, index) => (
+          {companions.map((item: any, index: number) => (
             <TableRow
               key={index}
               onClick={() => router.push(`/companion/${item.id}`)}

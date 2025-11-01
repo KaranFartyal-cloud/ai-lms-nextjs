@@ -27,9 +27,8 @@ export default async function Page({
           </div>
         </div>
 
-        <section className="mt-7 grid grid-cols-3">
+        <section className="mt-7 grid grid-cols-3 gap-4">
           {companions.map((companion) => (
-            
             <CompanionCard
               key={companion.id}
               {...companion}

@@ -14,6 +14,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 export interface Companion {
+  id: string;
   name: string;
   subject: string;
   topic: string;
@@ -73,7 +74,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         />
       </div>
 
-      <MessageComponent companion={data}/>
+      <MessageComponent companion={data} />
     </div>
   );
 };
