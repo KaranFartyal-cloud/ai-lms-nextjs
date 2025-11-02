@@ -25,7 +25,7 @@ const UserComponent = ({
           height={150}
           width={150}
           alt="profile-pic"
-          className="rounded-lg"
+          className="rounded-lg max-lg:hidden"
         />
         <h1 className="text-2xl font-semibold">{userName}</h1>
 

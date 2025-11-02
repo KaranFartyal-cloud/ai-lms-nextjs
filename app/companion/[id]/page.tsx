@@ -5,13 +5,11 @@ import MessageComponent from "@/components/MessageComponent";
 import UserComponent from "@/components/UserComponent";
 import { Badge } from "@/components/ui/badge";
 import { subjectsColors } from "@/constants";
-import { useVapi } from "@/hooks/useVapi";
 import { getCompanion } from "@/lib/actions/companion.action";
 import { getImage } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
 
 export interface Companion {
   id: string;
@@ -38,8 +36,8 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <div className="mt-10 w-full flex flex-col gap-10 ">
-      <div className="border w-full border-black p-10 h-[75px] flex items-center justify-between rounded-lg">
-        <div className="flex  gap-4 items-center">
+      <div className="border w-full border-black p-10 max-lg:px-2 h-[75px] flex items-center justify-between rounded-lg">
+        <div className="flex max-lg:gap-2 gap-4 items-center">
           <div
             className="p-2 rounded-lg"
             style={{
@@ -55,11 +53,11 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             />
           </div>
           <div>
-            <div className="flex  gap-5 items-center">
+            <div className=" gap-5 items-center">
               <h1 className="text-2xl capitalize font-bold">{name}</h1>
-              <Badge>{subject}</Badge>
+              <Badge className="max-lg:hidden">{subject}</Badge>
             </div>
-            <h1 className="capitalize">Topic: {topic}</h1>
+            <h1 className="capitalize max-lg:hidden">Topic: {topic}</h1>
           </div>
         </div>
 

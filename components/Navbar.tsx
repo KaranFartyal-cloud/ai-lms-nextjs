@@ -7,11 +7,12 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <nav className="flex px-[10vw] mt-4 justify-between">
-      <h1 className="font-bold">LOGO</h1>
+    <nav className="flex px-[10vw] max-lg:px-4 items-center mt-4 justify-between">
+      <Image src="/logo.png" width={80} height={80} alt="logo" />
       <div className="flex items-center gap-4">
         <NavItem />
         <SignedOut>

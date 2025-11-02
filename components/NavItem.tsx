@@ -7,7 +7,7 @@ import React from "react";
 const items = [
   { label: "Home", href: "/" },
   { label: "Companions", href: "/companion" },
-  { label: "My Journey", href: "/my-journey" },
+  { label: "Profile", href: "/my-journey" },
   { label: "Pricing", href: "/subscription" },
 ];
 
@@ -15,7 +15,7 @@ const NavItem = () => {
   const pathName = usePathname();
 
   return (
-    <nav className="flex justify-between gap-5">
+    <nav className="flex justify-between gap-5 max-lg:gap-3">
       {items.map(({ label, href }) => (
         <Link
           href={href}

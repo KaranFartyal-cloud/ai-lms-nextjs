@@ -45,8 +45,10 @@ export const getAllCompanions = async ({
   topic,
 }: getAllCompanion) => {
   const supabase = createSupabaseClient();
+  const user = await auth();
+  const userId = user.userId;
 
-  let query = supabase.from("companions").select();
+  let query = supabase.from("companions").select().eq("author", userId);
 
   if (subject && topic) {
     query = query
@@ -96,19 +98,23 @@ export const addToSessionHistory = async (companionId: string) => {
   return res.data;
 };
 
-export const getRecentSessions = async () => {
+export const getRecentSessions = async (limit = 10, total?: boolean) => {
   const supabase = createSupabaseClient();
   const { userId } = await auth();
 
-  const { data, error } = await supabase
+  const baseQuery = supabase
     .from("session_history")
-    .select(`companions : companion_id (*)`)
+    .select(`companions: companion_id(*)`)
     .eq("user_id", userId)
-    .order("created_at", { ascending: false })
-    .limit(10);
+    .order("created_at", { ascending: false });
 
-  // console.log(data);
+  if (total === true) {
+    const { data, error } = await baseQuery;
+    if (error) throw new Error(error.message);
+    return data?.length ?? 0;
+  }
 
+  const { data, error } = await baseQuery.limit(limit);
   if (error) throw new Error(error.message);
 
   return data;
