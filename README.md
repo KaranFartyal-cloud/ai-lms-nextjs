@@ -32,10 +32,16 @@ This platform allows users to create personalized AI companions that act as tuto
 ```bash
 git clone https://github.com/KaranFartyal-cloud/ai-lms-nextjs.git
 cd ai-lms-nextjs
+```
 
+### 2. Install Dependencies
+```bash
 npm install
 # or
 pnpm install
+
+```
+### 3. Configure Environment Variables
 
 Create a .env file at the root of the project and fill in the following values:
 
@@ -49,6 +55,15 @@ NEXT_PUBLIC_VAPI_TOKEN=
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 
+### 4 Run the development server
+
+```bash
+
 npm run dev
+# or
+pnpm run dev
+
+```
+
 
 
