@@ -4,6 +4,8 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
+//this is a Call to Action component
+
 const CTA = () => {
   return (
     <div className="border-2 bg-[#2C2C2C] items-center text-white mt-3 rounded-2xl flex flex-col justify-center gap-10 h-[600px] w-[450px]">

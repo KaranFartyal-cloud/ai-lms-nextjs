@@ -46,6 +46,7 @@ pnpm install
 Create a .env file at the root of the project and fill in the following values:
 
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+
 CLERK_SECRET_KEY=
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=
 NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=
